@@ -1,0 +1,29 @@
+{
+  "states": {
+    "intro": {
+      "text": "You know when that hotline bear, that can only mean one thing!",
+      "options": [{
+        "text": "learn more about hotline bear",
+        "state": "learn_more"
+      }, {
+        "text": "for espanyol",
+        "state": "test"
+      }]
+    },
+
+    "learn_more": {
+      "text": "Blah blah blah",
+      "options": [{
+        "text": "poop",
+        "state": "intro"
+      }, {
+        "text": "whatever",
+        "state": "intro"
+      }, {
+        "text": "help",
+        "state": "intro"
+      }]
+    }
+  },
+  "comment": "This is the end"
+}
