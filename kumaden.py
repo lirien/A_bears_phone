@@ -4,7 +4,7 @@ from pprint import pprint
 
 def main():
   dialog_tree = DialogTree()
-  dialog_tree.load('dialog.json')
+  dialog_tree.load('content/dialog.json')
 
   print dialog_tree.active_text
 
