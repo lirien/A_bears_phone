@@ -1,4 +1,4 @@
-from subprocess import call
+from subprocess import Popen
 from matrix_keypad import RPi_GPIO
 from RPi import GPIO
 
@@ -7,11 +7,19 @@ class IOHandler:
 
     def __init__(self):
         self.kp = RPi_GPIO.keypad()
-        self.GPIO.setup(TOGGLE_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(IOHandler.TOGGLE_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        self.was_active = False
+        self.process = None
+
+    @property
+    def active_changed(self):
+        changed = (self.active != self.was_active)
+        self.was_active = self.active
+        return changed
 
     @property
     def active(self):
-        if GPIO.input(TOGGLE_PIN):
+        if GPIO.input(IOHandler.TOGGLE_PIN):
             return False
         else:
             return True
@@ -20,13 +28,19 @@ class IOHandler:
         digitPressed = None
         while digitPressed == None:
             digitPressed = self.kp.getKey()
+            if not self.active:
+                return None
         return digitPressed
 
     def write(self, text):
+        if self.process != None:
+            self.process.terminate()
+            self.process = None
+
         try:
-            call(['flite', '-voice', 'awb', '-t', format(text)])
+            self.process = Popen(['flite', '-voice', 'awb', '-t', text])
         except OSError:
             try:
-                call(['say', text])
+                self.process = Popen(['say', text])
             except OSError:
                 print text

@@ -7,24 +7,27 @@ class GameState:
         self.io = IOHandler()
 
     def update(self):
-        if !self.io.active
-            print "Phone is on hook."
+        if not self.io.active:
+            self.twitter_feed.reset()
             return
 
-        option = self.io.read()
+        if self.io.active_changed:
+            self.display_help()
 
+        option = self.io.read()
         if option == '*':
-            self.io.write('I am a bear. My stories come from the twitter feed of ' +
-                          'a underscore single underscore bear.')
+            self.io.write('Hooray. I will get more stories from twitter.')
+            self.twitter_feed.load_more()
             return
         elif option == '#':
             self.display_help()
             return
-        else:
+        elif option != None:
             self.io.write(self.twitter_feed.get_tweet(int(option)))
 
     def display_help(self):
-        self.io.write('Hello! I am a bear.')
-        self.io.write('If you want to hear a story, press a number.')
-        self.io.write('If you want to learn more about me, press star.')
-        self.io.write('If you want to hear this message again, press pound.')
+        self.io.write('Hello! I am a bear. I tell stories from twitter user ' +
+                      'A underscore single underscore bear. ' +
+                      'If you want to hear a story, press a number. ' +
+                      'If you want more stories, press star. ' +
+                      'If you want to hear this message again, press pound.')
