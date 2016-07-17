@@ -7,7 +7,7 @@ class GameState:
         self.io = IOHandler()
 
     def update(self):
-        self.twitter_feed.test()
+        self.twitter_feed.get_timeline()
         option = self.io.read()
 
         if option == 0:

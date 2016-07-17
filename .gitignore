@@ -90,3 +90,4 @@ ENV/
 
 # Config file
 config.json
+content/tweets.json
