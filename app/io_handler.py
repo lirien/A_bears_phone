@@ -1,8 +1,15 @@
 from subprocess import call
+from matrix_keypad import RPi_GPIO
 
 class IOHandler:
+    def __init__(self):
+        self.kp = RPi_GPIO.keypad()
+
     def read(self):
-        return raw_input('Select an option: ')
+        digitPressed = None
+        while digitPressed == None:
+            digitPressed = self.kp.getKey()
+        return digitPressed
 
     def write(self, text):
         try:
