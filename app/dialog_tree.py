@@ -1,4 +1,5 @@
 import json
+from pprint import pprint
 
 class DialogTree:
     data = None
@@ -8,8 +9,8 @@ class DialogTree:
         with open(filename) as data_source:
             self.data = json.load(data_source)
 
-    def switch_state(self, state_name):
-        self.__current_state = state_name
+    def select_option(self, option):
+            self.__current_state = self.current_state['options'][option - 1]['state']
 
     @property
     def current_state(self):
@@ -25,6 +26,6 @@ class DialogTree:
             index += 1
 
         output += ". To hear these options again, press 9"
-        output += ". To speak to an operator, press 0"
+        output += ". To speak to an operator, press 0."
 
         return output

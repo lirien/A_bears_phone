@@ -3,11 +3,11 @@
     "intro": {
       "text": "You know when that hotline bear, that can only mean one thing!",
       "options": [{
-        "text": "learn more about hotline bear",
+        "text": "To learn more about hotline bear",
         "state": "learn_more"
       }, {
-        "text": "for espanyol",
-        "state": "test"
+        "text": "If you're calling about your honey",
+        "state": "intro"
       }]
     },
 
