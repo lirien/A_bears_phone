@@ -11,8 +11,8 @@ class GameState:
         option = self.io.read()
 
         if option == '*':
-            self.io.write('I am a bear. My stories come from twitter user ' +
-                          'at-sign a underscore single underscore bear.')
+            self.io.write('I am a bear. My stories come from the twitter feed of ' +
+                          'a underscore single underscore bear.')
             return
         elif option == '#':
             self.display_help()
