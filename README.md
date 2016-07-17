@@ -9,3 +9,4 @@ Requirements
 * [matrix_keypad](https://pypi.python.org/pypi/matrix_keypad)
 * [flite](http://www.speech.cs.cmu.edu/flite/)
 * [python-twitter](https://github.com/bear/python-twitter)
+* [pyaudio](http://people.csail.mit.edu/hubert/pyaudio/)
