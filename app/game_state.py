@@ -5,9 +5,12 @@ class GameState:
     def __init__(self):
         self.twitter_feed = TwitterFeed()
         self.io = IOHandler()
-        self.display_help()
 
     def update(self):
+        if !self.io.active
+            print "Phone is on hook."
+            return
+
         option = self.io.read()
 
         if option == '*':
