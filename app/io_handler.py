@@ -6,7 +6,7 @@ class IOHandler:
 
     def write(self, text):
         try:
-            call(['flite', '--voice awb', "-t {0}".format(text)])
+            call(['flite', '-voice', 'awb', '-t', format(text)])
         except OSError:
             try:
                 call(['say', text])
