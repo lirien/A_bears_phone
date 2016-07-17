@@ -15,7 +15,7 @@ class GameState:
                           'at-sign a underscore single underscore bear.')
             return
         elif option == '#':
-            display_help()
+            self.display_help()
             return
         else:
             self.io.write(self.twitter_feed.get_tweet(int(option)))

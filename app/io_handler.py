@@ -5,4 +5,10 @@ class IOHandler:
         return raw_input('Select an option: ')
 
     def write(self, text):
-        call(['say', text])
+        try:
+            call(['flite', '--voice awb', "-t {0}".format(text)])
+        except OSError:
+            try:
+                call(['say', text])
+            except OSError:
+                print text
