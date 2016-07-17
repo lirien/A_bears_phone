@@ -1,6 +1,8 @@
+from subprocess import call
+
 class IOHandler:
     def read(self):
-        return int(raw_input('Bingo is a kitty '))
+        return raw_input('Select an option: ')
 
-    def write(self,text):
-        print text
+    def write(self, text):
+        call(['say', text])
