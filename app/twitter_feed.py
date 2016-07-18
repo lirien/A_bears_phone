@@ -1,5 +1,6 @@
 import twitter
 import json
+from pprint import pprint
 
 class TwitterFeed:
     TWEET_COUNT = 10
@@ -21,8 +22,7 @@ class TwitterFeed:
         try:
             statuses = self.api.GetUserTimeline(screen_name='A_single_bear',
                                                 exclude_replies=True,
-                                                count=200,
-                                                page=1)
+                                                count=200)
             self.timeline['tweets'] = [s.text.replace('#', 'hash tag') for s in statuses]
             with open('content/tweets.json', 'w') as outfile:
                 json.dump(self.timeline, outfile)
