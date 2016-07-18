@@ -1,7 +1,7 @@
 # kumaden
 A Raspberry Pi interactive art project.
 
-A bear phone reads tweets from [@A_single_bear](http://twitter.com/A_single_bear/),
+A bear's phone reads tweets from [@A_single_bear](http://twitter.com/A_single_bear/),
 with [bear/python-twitter](https://github.com/bear/python-twitter/).
 
 ![](a_bears_phone.jpg)
