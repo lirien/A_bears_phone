@@ -12,12 +12,6 @@ class IOHandler:
         self.process = None
 
     @property
-    def active_changed(self):
-        changed = (self.active != self.was_active)
-        self.was_active = self.active
-        return changed
-
-    @property
     def active(self):
         if GPIO.input(IOHandler.TOGGLE_PIN):
             return False
