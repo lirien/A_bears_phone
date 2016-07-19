@@ -21,7 +21,7 @@ class GameState:
         option = self.io.read()
         if option != None:
             print option
-            self.sound_manager.play("{0}".format(option))
+            self.sound_manager.play('{0}'.format(option))
         if option == '*':
             self.sound_manager.play('load_more')
             self.twitter_feed.load_more()
@@ -30,7 +30,7 @@ class GameState:
             self.display_help()
             return
         elif option != None:
-            self.io.write(self.twitter_feed.get_tweet(int(option)))
+            self.sound_manager.play('tweets/{0}'.format(self.twitter_feed.get_tweet(int(option))))
 
     def display_help(self):
         self.sound_manager.play('intro')

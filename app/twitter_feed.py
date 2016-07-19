@@ -1,6 +1,7 @@
 import twitter
 import json
-from pprint import pprint
+import os
+from text_to_sound import TextToSound
 
 class TwitterFeed:
     TWEET_COUNT = 10
@@ -18,16 +19,23 @@ class TwitterFeed:
 
     def __get_timeline__(self):
         self.timeline = dict()
+        self.text_to_sound = TextToSound()
 
         try:
             statuses = self.api.GetUserTimeline(screen_name='A_single_bear',
                                                 exclude_replies=True,
                                                 count=200)
-            self.timeline['tweets'] = [s.text.replace('#', 'hash tag') for s in statuses]
+            self.timeline['tweets'] = [s.id for s in statuses]
+            print "Converting new tweets to audio. This might take a while..."
+            for s in statuses:
+                if not(os.path.isfile('content/sounds/tweets/{0}.wav'.format(s.id))):
+                    self.text_to_sound.write_file('{0}'.format(s.id), s.text)
+            print "Done converting tweets."
+
             with open('content/tweets.json', 'w') as outfile:
                 json.dump(self.timeline, outfile)
         except:
-            """If we have an API failure, load cached tweets"""
+            #If we have an API failure, load cached tweets
             with open('content/tweets.json') as infile:
                 self.timeline = json.load(infile)
 

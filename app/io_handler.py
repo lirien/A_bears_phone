@@ -30,7 +30,6 @@ class IOHandler:
         if self.process != None:
             self.process.terminate()
             self.process = None
-
         try:
             self.process = Popen(['flite', '-voice', 'awb', '-t', text])
         except OSError:
