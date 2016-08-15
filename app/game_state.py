@@ -1,12 +1,12 @@
 from twitter_feed import TwitterFeed
 from io_handler import IOHandler
-from async_sound import AsyncSound
+from sound_manager import SoundManager
 
 class GameState:
     def __init__(self):
         self.twitter_feed = TwitterFeed()
         self.io = IOHandler()
-        self.sound_manager = AsyncSound()
+        self.sound_manager = SoundManager()
 
     def update(self):
         if not self.io.active:
