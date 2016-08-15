@@ -1,4 +1,4 @@
-# kumaden
+# A bear's phone
 A Raspberry Pi interactive art project.
 
 A bear's phone reads tweets from [@A_single_bear](http://twitter.com/A_single_bear/),
