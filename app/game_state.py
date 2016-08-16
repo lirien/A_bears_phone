@@ -9,8 +9,6 @@ class GameState:
         self.sound_manager = SoundManager()
 
     def update(self):
-        self.sound_manager.update()
-
         if not self.io.active:
             self.io.was_active = False
             self.twitter_feed.reset()
@@ -22,10 +20,10 @@ class GameState:
 
         option = self.io.read()
         if option == '*':
-            print "Invoking sound manager!!!!"
             self.sound_manager.play('*')
             self.sound_manager.enqueue('load_more')
             self.twitter_feed.load_more()
+            self.sound_manager.update()
             return
         elif option == '#':
             self.display_help()
@@ -33,6 +31,8 @@ class GameState:
         elif option != None:
             self.sound_manager.play(str(option))
             self.sound_manager.enqueue('tweets/{0}'.format(self.twitter_feed.get_tweet(int(option))))
+
+        self.sound_manager.update()
 
     def display_help(self):
         self.sound_manager.play('intro')
