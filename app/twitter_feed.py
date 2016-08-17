@@ -1,6 +1,7 @@
 import json
 import os
 import twitter
+import re
 from text_to_sound import TextToSound
 
 class TwitterFeed:
@@ -28,8 +29,10 @@ class TwitterFeed:
             self.timeline['tweets'] = [s.id for s in statuses]
             print "Converting new tweets to audio. This might take a while..."
             for s in statuses:
+                tweet_text = re.sub(r"http\S+", "", s.text)
+                print tweet_text
                 if not os.path.isfile('content/sounds/tweets/{0}.wav'.format(s.id)):
-                    self.text_to_sound.write_file('{0}'.format(s.id), s.text)
+                    self.text_to_sound.write_file('{0}'.format(s.id), tweet_text)
             print "Done converting tweets."
 
             with open('content/tweets.json', 'w') as outfile:
