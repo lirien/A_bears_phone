@@ -1,6 +1,6 @@
-import twitter
 import json
 import os
+import twitter
 from text_to_sound import TextToSound
 
 class TwitterFeed:
@@ -28,7 +28,7 @@ class TwitterFeed:
             self.timeline['tweets'] = [s.id for s in statuses]
             print "Converting new tweets to audio. This might take a while..."
             for s in statuses:
-                if not(os.path.isfile('content/sounds/tweets/{0}.wav'.format(s.id))):
+                if not os.path.isfile('content/sounds/tweets/{0}.wav'.format(s.id)):
                     self.text_to_sound.write_file('{0}'.format(s.id), s.text)
             print "Done converting tweets."
 
@@ -40,15 +40,15 @@ class TwitterFeed:
                 self.timeline = json.load(infile)
 
     def get_tweet(self, index):
-        self.current_tweet = self.timeline['tweets'][self.__offset + index]
-        return self.current_tweet
+        current_tweet = self.timeline['tweets'][self.__offset + index]
+        return current_tweet
 
     def reset(self):
         self.__offset = 0
 
     def load_more(self):
-        """We already have 200 stories..."""
-        """No reason to do another network request."""
+        # We already have 200 stories...
+        # No reason to do another network request.
         self.__offset += self.TWEET_COUNT
         if self.__offset >= len(self.timeline['tweets']) - self.TWEET_COUNT:
             self.__offset = 0

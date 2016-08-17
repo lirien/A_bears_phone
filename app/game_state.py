@@ -23,8 +23,6 @@ class GameState:
             self.sound_manager.play('*')
             self.sound_manager.enqueue('load_more')
             self.twitter_feed.load_more()
-            self.sound_manager.update()
-            return
         elif option == '#':
             self.display_help()
             return

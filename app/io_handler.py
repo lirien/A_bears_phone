@@ -1,7 +1,7 @@
+import time
 from subprocess import Popen
 from matrix_keypad import RPi_GPIO
 from RPi import GPIO
-import time
 
 class IOHandler:
     TOGGLE_PIN = 11
@@ -21,7 +21,7 @@ class IOHandler:
 
     def read(self):
         digitPressed = None
-        while digitPressed == None:
+        while digitPressed is None:
             digitPressed = self.kp.getKey()
             time.sleep(0.05)
             if not self.active:
