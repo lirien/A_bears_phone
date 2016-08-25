@@ -30,6 +30,9 @@ class TwitterFeed:
             print "Converting new tweets to audio. This might take a while..."
             for s in statuses:
                 tweet_text = re.sub(r"http\S+", "", s.text)
+                tweet_text = re.sub(r"&amp;", "and", tweet_text)
+                tweet_text = re.sub(r"#", "hashtag ", tweet_text)
+                tweet_text = re.sub(r"@", "", tweet_text)
                 print tweet_text
                 if not os.path.isfile('content/sounds/tweets/{0}.wav'.format(s.id)):
                     self.text_to_sound.write_file('{0}'.format(s.id), tweet_text)
